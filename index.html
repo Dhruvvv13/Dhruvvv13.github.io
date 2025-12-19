@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Volt Exchange</title>
+    <title>Volt Xchange</title>
 
     <style>
       * {
@@ -58,23 +58,6 @@
         -webkit-text-fill-color: transparent;
       }
 
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 34px;
-      }
-
-      .nav-links a {
-        font-size: 13px;
-        color: #c7c7cc;
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      .nav-links a:hover {
-        color: #e5d18a;
-      }
-
       .hero {
         min-height: 100vh;
         background: radial-gradient(
@@ -94,10 +77,49 @@
       }
 
       .hero-eyebrow {
-        font-size: 12px;
-        letter-spacing: 0.32em;
-        color: #d4af37;
+        position: relative;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
         margin-bottom: 28px;
+      }
+
+      .hero-eyebrow::before {
+        content: "";
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(255, 200, 80, 0.95) 5%,
+          rgba(212, 175, 55, 0.65) 35%,
+          rgba(212, 175, 55, 0.35) 75%,
+          transparent 80%
+        );
+        filter: blur(22px);
+        z-index: 0;
+        animation: voltGlow 2.8s ease-in-out infinite;
+      }
+
+      .hero-eyebrow img {
+        position: relative;
+        z-index: 2;
+      }
+
+      @keyframes voltGlow {
+        0% {
+          transform: scale(1);
+          opacity: 0.75;
+        }
+        50% {
+          transform: scale(1.15);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.75;
+        }
       }
 
       .hero-title {
@@ -136,11 +158,6 @@
         letter-spacing: 0.12em;
         text-decoration: none;
         transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .btn-gold {
-        background: linear-gradient(180deg, #f1e3b1, #d4af37);
-        color: #000;
       }
 
       .btn-outline {
@@ -189,28 +206,15 @@
         border-radius: 30px;
         padding: 70px 52px;
         backdrop-filter: blur(18px);
-        transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-
-      .feature:hover {
-        transform: translateY(-10px);
-      }
-
-      .feature h3 {
-        font-size: 25px;
-        margin-bottom: 14px;
-      }
-
-      .feature p {
-        font-size: 18px;
-        color: #a8a8ad;
       }
 
       .stats {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 60px;
-        margin-top: 90px;
+        gap: 80px;
+        margin-top: 120px;
+        align-items: center;
+        justify-items: center;
       }
 
       .stat h4 {
@@ -223,6 +227,8 @@
 
       .stat p {
         color: #a8a8ad;
+        margin-top: 8px;
+        font-size: 15px;
       }
 
       footer {
@@ -233,70 +239,88 @@
         font-size: 13px;
       }
 
-      .reveal {
-        opacity: 0;
-        transform: translateY(50px);
-        transition: opacity 1s ease, transform 1s ease;
+     
+
+      .feedback-wrapper {
+        overflow: hidden;
+        margin-top: 100px;
       }
 
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
+      .feedback-track {
+        display: flex;
+        gap: 32px;
+        width: max-content;
+        animation: feedbackScroll 30s linear infinite;
+      }
+
+      .feedback-card {
+        min-width: 320px;
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.05),
+          rgba(255, 255, 255, 0.02)
+        );
+        border-radius: 26px;
+        padding: 34px;
+        backdrop-filter: blur(18px);
+        text-align: left;
+      }
+
+      .feedback-stars {
+        color: #d4af37;
+        margin-bottom: 12px;
+        font-size: 14px;
+      }
+
+      .feedback-card p {
+        font-size: 16px;
+        color: #d0d0d5;
+        line-height: 1.6;
+      }
+
+      .feedback-card span {
+        display: block;
+        margin-top: 12px;
+        font-size: 13px;
+        color: #8e8e93;
+      }
+
+      @keyframes feedbackScroll {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(-50%);
+        }
       }
 
       @media (max-width: 900px) {
         .hero-title {
           font-size: 46px;
         }
-        .features,
-        .stats {
+
+        .features {
           grid-template-columns: 1fr;
+        }
+
+        .stats {
+          grid-template-columns: repeat(3, 1fr);
         }
       }
 
-.hero-eyebrow {
-  position: relative;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+.section > .section-title {
+  margin-top: -40px;
 }
 
-.hero-eyebrow::before {
-  content: "";
-  position: absolute;
-  width: 160px;
-  height: 160px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 200, 80, 0.95) 0%,
-    rgba(212, 175, 55, 0.65) 35%,
-    rgba(212, 175, 55, 0.35) 55%,
-    transparent 70%
-  );
-  filter: blur(22px);
-  z-index: 0;
-  animation: voltGlow 2.8s ease-in-out infinite;
+
+.feedback-wrapper {
+  margin-bottom: 40px;
 }
 
-.hero-eyebrow img {
-  position: relative;
-  z-index: 2;
-}
 
-@keyframes voltGlow {
-  0% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.75;
-  }
+.section {
+  padding-top: 80px;
+  padding-bottom: 80px;
 }
 
     </style>
@@ -306,115 +330,163 @@
     <header>
       <nav>
         <div class="logo">
-          <img
-            src="https://i.postimg.cc/tgxrB5c1/svvoltex.png"
-            alt="Volt Exchange"
-            style="height: 32px"
-          />
-        </div>
+  <a href="#top">
+    <img
+      src="https://i.postimg.cc/tgxrB5c1/svvoltex.png"
+      alt="Volt Exchange"
+      style="height: 32px; cursor: pointer"
+    />
+  </a>
+</div>
+
       </nav>
     </header>
 
     <section class="hero">
-      <div class="hero-inner reveal">
-      
+      <div class="hero-inner">
         <div class="hero-eyebrow">
           <img
             src="https://cdn.discordapp.com/attachments/1371534100330184714/1451312855629697159/gfx_server_logo.gif?ex=6945b7ec&is=6944666c&hm=eca1860ca4e202a7393ab0d44c0750eea408579db47c2b016e9075b49bb87057&animated=true"
-            alt="Volt Exchange Logo"
-            style="height: 120px; width: 120px; border-radius: 100%; object-fit: cover;"
+            style="height: 120px; width: 120px; border-radius: 100%"
           />
         </div>
 
-        <h1 class="hero-title">Volt Exchange</h1>
+        <h1 class="hero-title">Volt Xchange</h1>
         <p class="hero-subtitle">
           A refined exchange environment designed for speed, trust, and absolute
           discretion.
         </p>
 
         <div class="hero-actions">
-          <a
-            href="https://discord.gg/voltexch"
-            class="btn btn-outline"
-            target="_blank"
-            >Discord</a
-          >
-          <a
-            href="https://t.me/voltexch"
-            class="btn btn-outline"
-            target="_blank"
-            >Telegram</a
-          >
+          <a href="https://discord.gg/voltexch" class="btn btn-outline">Discord</a>
+          <a href="https://t.me/voltexch" class="btn btn-outline">Telegram</a>
         </div>
       </div>
     </section>
 
-    <section class="section reveal">
-      <h2 class="section-title">Built With Trust</h2>
+    <section class="section">
+
+    
+
+      <h2 class="section-title">Built With trust</h2>
       <p class="section-desc">
         Trusted by 2,000+ verified members across our Discord community.
       </p>
 
+         <div class="feedback-wrapper">
+        <div class="feedback-track">
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p>quick service and trusted. Smooth experience!!!</p>
+            <span>— BitCraze999</span>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p>goated server brah got exchangers helping me out here at 4 am ❤️ ❤️</p>
+            <span>— strazz</span>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p> fastest exchange ✨</p>
+            <span>— Rishabh soyal</span>
+          </div>
+           
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p> Very good exchnage server</p>
+            <span>— Rohit</span>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p> fastt n secure 🔐</p>
+            <span>— Ravi Bhai</span>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p>  MF BLESSED ME AGAIN WITH THE FASTEST EXCHANGE</p>
+            <span>— Dudie</span>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p> very nice exch and claimed ticket in 0.5 sec</p>
+            <span>— Suresh Bishnoi</span>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p> touched my G spot enjoyed the deal 1650$ crypto to inr ily ❤️</p>
+            <span>— Spenser</span>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★★</div>
+            <p> thanks for fast and safe transfer</p>
+            <span>— Magma</span>
+          </div>
+
+          <div class="feedback-card">
+            <div class="feedback-stars">★★★★</div>
+            <p>Fast as fuccccccccccccccccccccccckkkkk</p>
+            <span>— Seige</span>
+          </div>
+        </div>
+      </div>
+
+    
       <div class="features">
         <div class="feature">
-          <h3>Convert INR to Crypto and Crypto to INR. Securely.</h3>
+          <h3>Convert INR to Crypto. Securely.</h3>
           <p>
             Near-zero latency execution without friction.Verified members. Live
             moderation. Fast settlements directly via Discord.
           </p>
         </div>
+
         <div class="feature">
-          <h3>Simple INR–Crypto & Crypto-INR exchange.</h3>
+          <h3>Simple INR–Crypto exchange.</h3>
           <p>
             Transparent rates. Fast processing. Human-verified exchange via
             Discord.
           </p>
         </div>
+
         <div class="feature">
           <h3>Built on trust, not automation.Global Access</h3>
           <p>
-            Every INR ↔ Crypto & Crypto ↔ INR exchange is handled manually by verified staff
+            Every INR ↔ Crypto exchange is handled manually by verified staff
             inside Discord.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="section reveal">
+    <section class="section">
       <div class="stats">
         <div class="stat">
           <h4>2k+</h4>
           <p>Verified Members</p>
         </div>
+
         <div class="stat">
           <h4>500k$+</h4>
           <p>Dealt Over</p>
         </div>
+
         <div class="stat">
           <h4>24/7</h4>
           <p>Available around the clock</p>
         </div>
       </div>
+
+      <!-- FEEDBACK ADDED HERE -->
+     
     </section>
 
-    <footer class="reveal">© 2025 Volt Exchange. All rights reserved.</footer>
-
-    <script>
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) entry.target.classList.add("active");
-          });
-        },
-        { threshold: 0.15 }
-      );
-
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => observer.observe(el));
-    </script>
+    <footer>© 2025 Volt Exchange. All rights reserved.</footer>
   </body>
 </html>
-
-
-
